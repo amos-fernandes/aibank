@@ -1,0 +1,80 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 174 59% 39%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 260 30% 50%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 174 59% 39%;
+
+    --radius: 0.75rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  .bank-card {
+    @apply bg-gradient-to-br from-bank-teal to-bank-purple text-white rounded-xl p-4 shadow-lg;
+  }
+  
+  .auth-input {
+    @apply w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-bank-teal transition-all;
+  }
+  
+  .auth-btn {
+    @apply w-full px-4 py-3 rounded-lg bg-bank-teal text-white font-medium hover:bg-opacity-90 transition-all;
+  }
+  
+  .auth-btn-secondary {
+    @apply w-full px-4 py-3 rounded-lg bg-white text-bank-purple border border-bank-purple font-medium hover:bg-bank-purple hover:bg-opacity-5 transition-all;
+  }
+  
+  .action-btn {
+    @apply flex flex-col items-center justify-center p-3 bg-white rounded-lg shadow-md hover:shadow-lg transition-all;
+  }
+  
+  .transaction-item {
+    @apply flex items-center justify-between p-3 border-b border-gray-100 last:border-none;
+  }
+}
+
+.glassmorphism {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
