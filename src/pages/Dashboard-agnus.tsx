@@ -3,6 +3,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import AgnusPanel from '../components/AgnusPanel';
 
 const dashboardData = {
   leads: 3,
@@ -43,7 +44,7 @@ export default function DashboardAgenteAgnus() {
 
   return (
     <div className="p-6 space-y-6">
-      <h2 className="text-2xl font-semibold">Painel de Controle – Agente Agnus</h2>
+      <h2 className="text-2xl font-semibold">Painel de Controle – Agente VerticalAgent</h2>
 
       {/* Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
@@ -89,7 +90,7 @@ export default function DashboardAgenteAgnus() {
         </Tabs>
 
         <div className="flex justify-end mb-2">
-          <Button>Executar Agente Agnus</Button>
+          <Button>Executar Agente VerticalAgent</Button>
         </div>
 
         {/* Leads Table */}
@@ -124,6 +125,7 @@ export default function DashboardAgenteAgnus() {
           </div>
         )}
       </div>
+      <AgnusPanel/>
     </div>
   );
 }
