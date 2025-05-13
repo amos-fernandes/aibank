@@ -19,6 +19,8 @@ import Crypto from "./pages/Crypto";
 import Settings from "./pages/Settings";
 import CreditCard from "./pages/CreditCard";
 import NotFound from "./pages/NotFound";
+import DashboardAgenteAgnus from "./pages/Dashboard-agnus";
+import { Layout } from "lucide-react";
 
 const queryClient = new QueryClient();
 
@@ -36,7 +38,7 @@ const App = () => (
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/forgot-password" element={<ForgotPassword />} />
-              
+              {/* <Route path="/agente" element={<Agente />} /> */}
               {/* Semi-protected route (requires auth but not OpenFinance) */}
               <Route 
                 path="/open-finance" 
@@ -80,6 +82,14 @@ const App = () => (
                   </ProtectedRoute>
                 } 
               />
+              <Route path="/agente" element={
+                  <ProtectedRoute>
+                    <DashboardAgenteAgnus />
+                  </ProtectedRoute>
+                }  />
+
+                
+              
               <Route 
                 path="/settings" 
                 element={

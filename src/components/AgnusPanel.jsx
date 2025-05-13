@@ -8,7 +8,12 @@ const AgnusPanel = () => {
 
   useEffect(() => {
     axios.get('/api/agnus/interactions')
-      .then(res => setInteractions(res.data))
+
+      .then(res => {
+          console.log('Interações recebidas:', res.data);
+          const data = Array.isArray(res.data) ? res.data : [];
+          setInteractions(data);
+        })
       .catch(err => console.error('Erro ao buscar interações:', err))
       .finally(() => setLoading(false));
   }, []);

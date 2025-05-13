@@ -2,7 +2,8 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
-import { LogOut, Home, Send, PiggyBank, Settings, CreditCard } from 'lucide-react';
+import { LogOut, Home, Send, PiggyBank, Settings, CreditCard , Brain} from 'lucide-react';
+
 
 const AppNav: React.FC = () => {
   const { logout } = useAuth();
@@ -49,6 +50,15 @@ const AppNav: React.FC = () => {
               isActive('/crypto') ? 'text-bank-teal' : 'text-gray-500'
             }`}
           >
+            <Brain size={20} />
+            <span className="text-xs mt-1">Agente</span>
+          </Link>
+            <Link
+            to="/agente"
+            className={`flex flex-col items-center justify-center w-full h-full ${
+              isActive('/agente') ? 'text-bank-teal' : 'text-gray-500'
+            }`}
+          >
             <PiggyBank size={20} />
             <span className="text-xs mt-1">Cripto</span>
           </Link>
@@ -68,7 +78,7 @@ const AppNav: React.FC = () => {
       <div className="hidden lg:block fixed left-0 top-0 h-full w-64 bg-white shadow-lg z-40">
         <div className="p-5">
           <div className="mb-8 flex items-center">
-            <div className="w-10 h-10 rounded-full flex items-center justify-center">
+            <div className="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden border-2 border-gray-300">
               <img src="/lovable-uploads/7a1d6d34-d74c-48e2-b662-b22ecf0a5a3d.png" alt="AIBANK Logo" className="w-8 h-8" />
             </div>
             <h1 className="ml-3 text-xl font-bold">AIBANK</h1>
@@ -126,6 +136,19 @@ const AppNav: React.FC = () => {
                 <PiggyBank size={20} className="mr-3" />
                 <span>Criptomoedas</span>
               </Link>
+            </li>
+            <li>
+            <Link
+                  to="/agente"
+                  className={`flex items-center px-4 py-3 rounded-lg transition-all ${
+                  isActive('/agente')
+                    ? 'bg-bank-teal text-white'
+                    : 'hover:bg-gray-100'
+                }`}
+              >
+                <Brain size={20} className="mr-3" />
+                <span>Agente</span>
+                </Link>
             </li>
             <li>
               <Link

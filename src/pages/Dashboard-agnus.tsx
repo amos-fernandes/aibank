@@ -5,6 +5,22 @@ import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import AgnusPanel from '../components/AgnusPanel';
 
+const handleExecutarAgente = async () => {
+  try {
+    const response = await fetch("http://localhost:8080/exec-agente", {
+      method: "POST",
+    });
+    const result = await response.json();
+    console.log("Agente executado:", result);
+    alert("Agente executado com sucesso!");
+  } catch (error) {
+    console.error("Erro ao executar agente:", error);
+    alert("Erro ao executar o agente");
+  }
+};
+
+
+
 const dashboardData = {
   leads: 3,
   campaigns: 1,
@@ -90,7 +106,7 @@ export default function DashboardAgenteAgnus() {
         </Tabs>
 
         <div className="flex justify-end mb-2">
-          <Button>Executar Agente VerticalAgent</Button>
+          <Button onClick={handleExecutarAgente}>Executar Agente VerticalAgent</Button>
         </div>
 
         {/* Leads Table */}
