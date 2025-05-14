@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import AgnusPanel from '../components/AgnusPanel';
 import axios from 'axios';
-import { fetchInteractions } from 'frontend/agnus/interactions';
+import { fetchInteractions } from '../components/interactions';
 
 
 const [executing, setExecuting] = useState(false);
