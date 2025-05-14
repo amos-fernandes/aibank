@@ -5,63 +5,53 @@ import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import AgnusPanel from '../components/AgnusPanel';
 import axios from 'axios';
-import { fetchInteractions } from 'api/interactions';
-
-
-const [executing, setExecuting] = useState(false);
-
-
-const handleExecuteAgent = async () => {
-  setExecuting(true);
-  try {
-    const response = await axios.post('/api/agnus/execute-agent');
-    console.log('Agente executado com sucesso:', response.data);
-    fetchInteractions();
-  } catch (error) {
-    console.error('Erro ao executar o agente:', error);
-  } finally {
-    setExecuting(false);
-  }
-};
+import { fetchInteractions } from '../components/interactions';
 
 
 
-const dashboardData = {
-  leads: 3,
-  campaigns: 1,
-  responseRate: 15.3,
-  qualified: 23,
-};
 
-const leadsMock = [
-  {
-    company: 'TechCorp Goiânia',
-    contact: 'Ana Silva',
-    email: 'ana@techcorp.com.br',
-    whatsapp: '5562998765432',
-    industry: 'Tecnologia',
-    date: '2025-05-10',
-  },
-  {
-    company: 'Indústrias Goiás',
-    contact: 'Carlos Mendes',
-    email: 'carlos@industriasgoias.com.br',
-    whatsapp: '5562987651234',
-    industry: 'Manufatura',
-    date: '2025-05-11',
-  },
-  {
-    company: 'Construtora Cerrado',
-    contact: 'Patricia Alves',
-    email: 'patricia@cerrado.com.br',
-    whatsapp: '5562991234567',
-    industry: 'Construção',
-    date: '2025-05-12',
-  },
-];
 
 export default function DashboardAgenteAgnus() {
+  const [executing, setExecuting] = useState(false);
   const [tab, setTab] = useState('leads');
+  const [leads, setLeads] = useState([]);
+
+  const handleExecuteAgent = async () => {
+    setExecuting(true);
+    try {
+      const response = await axios.post('/api/agnus/execute-agent');
+      console.log('Agente executado com sucesso:', response.data);
+      fetchInteractions();
+      await fetchLeads();
+    } catch (error) {
+      console.error('Erro ao executar o agente:', error);
+    } finally {
+      setExecuting(false);
+    }
+  };
+
+  const fetchLeads = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const response = await axios.get('/api/agnus/interactions', {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setLeads(response.data);
+    } catch (error) {
+      console.error('Erro ao buscar interações:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchLeads();
+  }, []);
+
+  const dashboardData = {
+    leads: leads.length,
+    campaigns: 1,
+    responseRate: 15.3,
+    qualified: 23,
+  };
 
   return (
     <div className="p-6 space-y-6">
@@ -112,7 +102,7 @@ export default function DashboardAgenteAgnus() {
 
         <div className="flex justify-end mb-2">
           <Button onClick={handleExecuteAgent} disabled={executing}>
-                    {executing ? 'Executando...' : 'Executar Agente VerticalAgent'}
+            {executing ? 'Executando...' : 'Executar Agente VerticalAgent'}
           </Button>
         </div>
 
@@ -133,7 +123,7 @@ export default function DashboardAgenteAgnus() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {leadsMock.map((lead, i) => (
+                {leads.map((lead, i) => (
                   <TableRow key={i}>
                     <TableCell>{lead.company}</TableCell>
                     <TableCell>{lead.contact}</TableCell>
