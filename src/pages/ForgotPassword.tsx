@@ -41,7 +41,7 @@ const ForgotPassword = () => {
             <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-bank-teal font-bold text-xl">
               F
             </div>
-            <h1 className="ml-2 text-xl font-bold">Finverse</h1>
+            <h1 className="ml-2 text-xl font-bold">AIBANK</h1>
           </div>
         </Link>
       </div>

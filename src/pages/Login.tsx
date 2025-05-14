@@ -44,10 +44,10 @@ const Login = () => {
       <div className="bg-gradient-to-r from-bank-teal to-bank-purple text-white p-6">
         <Link to="/" className="inline-block">
           <div className="flex items-center">
-            <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center text-bank-teal font-bold text-xl">
-              F
+            <div className="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden border-2 border-gray-300">
+              <img src="/lovable-uploads/7a1d6d34-d74c-48e2-b662-b22ecf0a5a3d.png" alt="AIBANK Logo" className="w-8 h-8" />
             </div>
-            <h1 className="ml-2 text-xl font-bold">Finverse</h1>
+            <h1 className="ml-2 text-xl font-bold">AIBANK</h1>
           </div>
         </Link>
       </div>

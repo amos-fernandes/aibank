@@ -46,10 +46,10 @@ const OpenFinance = () => {
       {/* Header */}
       <div className="bg-white shadow-sm p-4">
         <div className="container mx-auto flex items-center">
-          <div className="w-8 h-8 rounded-full bg-bank-teal flex items-center justify-center text-white font-bold">
-            F
-          </div>
-          <h1 className="ml-2 text-lg font-bold">Finverse</h1>
+          <div className="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden border-2 border-gray-300">
+              <img src="/lovable-uploads/7a1d6d34-d74c-48e2-b662-b22ecf0a5a3d.png" alt="AIBANK Logo" className="w-8 h-8" />
+            </div>
+          <h1 className="ml-2 text-lg font-bold">AIBANK</h1>
         </div>
       </div>
       
@@ -149,8 +149,8 @@ const OpenFinance = () => {
                 <div className="mx-4 text-gray-400">
                   <ChevronRight size={20} />
                 </div>
-                <div className="w-12 h-12 rounded-lg flex items-center justify-center border border-gray-200 bg-bank-teal text-white">
-                  <span className="font-bold">F</span>
+                    <div className="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden border-2 border-gray-300">
+                  <img src="/lovable-uploads/7a1d6d34-d74c-48e2-b662-b22ecf0a5a3d.png" alt="AIBANK Logo" className="w-8 h-8" />
                 </div>
               </div>
               
@@ -177,7 +177,7 @@ const OpenFinance = () => {
               </div>
               
               <p className="text-gray-500 text-sm mb-8">
-                Ao autorizar, você permite que a Finverse acesse esses dados por 12 meses. Você pode revogar esta autorização a qualquer momento através do seu banco ou da Finverse.
+                Ao autorizar, você permite que a AIBANK acesse esses dados por 12 meses. Você pode revogar esta autorização a qualquer momento através do seu banco ou da AIBANK.
               </p>
               
               <Button
@@ -199,7 +199,7 @@ const OpenFinance = () => {
               <h2 className="text-2xl font-bold mb-3">Autorização concluída!</h2>
               
               <p className="text-gray-600 mb-8">
-                Seus dados bancários foram conectados com sucesso. Agora você pode acessar todos os recursos da Finverse.
+                Seus dados bancários foram conectados com sucesso. Agora você pode acessar todos os recursos da AIBANK.
               </p>
               
               <Button
