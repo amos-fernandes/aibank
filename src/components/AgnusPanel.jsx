@@ -7,7 +7,7 @@ const AgnusPanel = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get('/api/agnus/interactions')
+    axios.get('/frontend/agnus/interactions')
 
       .then(res => {
           console.log('Interações recebidas:', res.data);
