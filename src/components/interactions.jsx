@@ -15,35 +15,7 @@ export const fetchInteractions = async () => {
 };
 
 // POST /api/interactions
-router.post('/', async (req, res) => {
-  const { nome, campanha, mensagem, resposta, intencao, user_id } = req.body;
 
-  try {
-    const { data, error } = await supabase
-      .from('interactions')
-      .insert([
-        {
-          nome,
-          campanha,
-          mensagem,
-          resposta,
-          intencao,
-          user_id,
-        },
-      ])
-      .select();
-
-    if (error) {
-      console.error('Erro ao inserir interação:', error);
-      return res.status(500).json({ error: error.message });
-    }
-
-    res.status(201).json(data[0]);
-  } catch (err) {
-    console.error('Erro inesperado ao salvar interação:', err);
-    res.status(500).json({ error: 'Erro ao salvar interação' });
-  }
-});
 
 
 // Componente visual
