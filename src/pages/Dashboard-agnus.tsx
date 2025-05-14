@@ -4,18 +4,23 @@ import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import AgnusPanel from '../components/AgnusPanel';
+import axios from 'axios';
+import { fetchInteractions } from 'frontend/agnus/interactions';
 
-const handleExecutarAgente = async () => {
+
+const [executing, setExecuting] = useState(false);
+
+
+const handleExecuteAgent = async () => {
+  setExecuting(true);
   try {
-    const response = await fetch("http://localhost:8080/exec-agente", {
-      method: "POST",
-    });
-    const result = await response.json();
-    console.log("Agente executado:", result);
-    alert("Agente executado com sucesso!");
+    const response = await axios.post('/api/agnus/execute-agent');
+    console.log('Agente executado com sucesso:', response.data);
+    fetchInteractions();
   } catch (error) {
-    console.error("Erro ao executar agente:", error);
-    alert("Erro ao executar o agente");
+    console.error('Erro ao executar o agente:', error);
+  } finally {
+    setExecuting(false);
   }
 };
 
@@ -106,7 +111,9 @@ export default function DashboardAgenteAgnus() {
         </Tabs>
 
         <div className="flex justify-end mb-2">
-          <Button onClick={handleExecutarAgente}>Executar Agente VerticalAgent</Button>
+          <Button onClick={handleExecuteAgent} disabled={executing}>
+                    {executing ? 'Executando...' : 'Executar Agente VerticalAgent'}
+          </Button>
         </div>
 
         {/* Leads Table */}
