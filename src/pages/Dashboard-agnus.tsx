@@ -5,9 +5,17 @@ import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import AgnusPanel from '../components/AgnusPanel';
 import axios from 'axios';
-import { fetchInteractions } from '../components/interactions';
+import { Loader2 } from 'lucide-react';
+import { format } from 'date-fns';
 
+// useEffect(() => {
+//   const storedTab = localStorage.getItem('agnus-tab');
+//   if (storedTab) setTab(storedTab);
+// }, []);
 
+// useEffect(() => {
+//   localStorage.setItem('agnus-tab', tab);
+// }, [tab]);
 
 
 
@@ -21,7 +29,7 @@ export default function DashboardAgenteAgnus() {
     try {
       const response = await axios.post('/api/agnus/execute-agent');
       console.log('Agente executado com sucesso:', response.data);
-      fetchInteractions();
+     
       await fetchLeads();
     } catch (error) {
       console.error('Erro ao executar o agente:', error);
@@ -100,13 +108,23 @@ export default function DashboardAgenteAgnus() {
           </TabsList>
         </Tabs>
 
-        <div className="flex justify-end mb-2">
-          <Button onClick={handleExecuteAgent} disabled={executing}>
-            {executing ? 'Executando...' : 'Executar Agente VerticalAgent'}
+        <Button onClick={handleExecuteAgent} disabled={executing}>
+            {executing ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Executando...
+              </>
+            ) : (
+              'Executar Agente VerticalAgent'
+            )}
           </Button>
-        </div>
 
         {/* Leads Table */}
+        {leads.length === 0 ? (
+              <p className="text-sm text-muted">Nenhum lead encontrado.</p>
+            ) : (
+              <Table>...</Table>
+            )}
         {tab === 'leads' && (
           <div className="rounded-xl border shadow-sm p-4">
             <h4 className="text-lg font-semibold mb-2">Lista de Leads</h4>
@@ -130,7 +148,7 @@ export default function DashboardAgenteAgnus() {
                     <TableCell>{lead.email}</TableCell>
                     <TableCell>{lead.whatsapp}</TableCell>
                     <TableCell>{lead.industry}</TableCell>
-                    <TableCell>{lead.date}</TableCell>
+                   <TableCell>{format(new Date(lead.date), 'dd/MM/yyyy HH:mm')}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
