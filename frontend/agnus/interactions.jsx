@@ -8,7 +8,7 @@ const Interactions = () => {
   useEffect(() => {
     const fetchInteractions = async () => {
       try {
-        const res = await axios.get('../components/interactions');
+        const res = await axios.get('api/interactions');
         setInteractions(res.data);
       } catch (error) {
         console.error('Erro ao buscar interações:', error);

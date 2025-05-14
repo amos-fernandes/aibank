@@ -75,7 +75,7 @@ router.post('/responder', async (req, res) => {
 });
 
 // routes/agnus.js
-router.get('/interactions', async (req, res) => {
+router.get('api/interactions', async (req, res) => {
   try {
     const { data, error } = await supabase
       .from('whatsapp_messages')
