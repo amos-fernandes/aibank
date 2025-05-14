@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useRouter } from 'next/router';
+
+const router = useRouter();
 
 const Interactions = () => {
   const [interactions, setInteractions] = useState([]);
