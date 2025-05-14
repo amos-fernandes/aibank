@@ -1,32 +1,32 @@
-# Etapa 1 – Build TypeScript
+# Etapa de build
 FROM node:18-alpine AS builder
 
 WORKDIR /app
 
-# Copiar dependências
-COPY backend/package.json backend/package-lock.json ./
+# Copia os arquivos de dependência
+COPY package*.json ./
 
-RUN npm ci
+# Instala as dependências
+RUN npm install
 
-# Copiar o código-fonte
-COPY backend/ .
+# Copia o restante do código
+COPY . .
 
-# Compilar TypeScript para JavaScript
+# Compila o TypeScript
 RUN npm run build
 
-# Etapa 2 – Runtime
+# Etapa de produção
 FROM node:18-alpine
 
 WORKDIR /app
 
-# Copiar apenas o build e dependências
-COPY --from=builder /app/package.json ./
-COPY --from=builder /app/node_modules ./node_modules
+# Copia apenas os arquivos necessários da etapa de build
 COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package*.json ./
 
-# Expor a porta (ajuste conforme necessário)
+# Define a porta que o aplicativo irá escutar
 ENV PORT=8080
-EXPOSE 8080
 
 # Comando para iniciar o servidor
 CMD ["node", "dist/index.js"]
