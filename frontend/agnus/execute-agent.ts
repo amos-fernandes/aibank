@@ -8,7 +8,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   try {
-    const backendUrl = process.env.BACKEND_AGENT_URL || 'http://localhost:3001/api/execute'
+    const backendUrl = process.env.BACKEND_AGENT_URL || 'http://localhost:8080/api/execute'
     
     const response = await axios.post(backendUrl)
 
