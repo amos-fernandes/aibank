@@ -1,8 +1,6 @@
 // src/components/interactions.jsx
 import axios from 'axios';
-import { useRouter } from 'next/router';
 
-const router = useRouter();
 
 export const fetchInteractions = async () => {
   try {
@@ -14,7 +12,7 @@ export const fetchInteractions = async () => {
   }
 };
 
-// POST /api/interactions
+
 
 
 
