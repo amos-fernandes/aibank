@@ -1,24 +1,35 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useRouter } from 'next/router';
+
+const router = useRouter();
 
 const Interactions = () => {
   const [interactions, setInteractions] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchInteractions = async () => {
-      try {
-        const res = await axios.get('/api/agnus/interactions');
-        setInteractions(res.data);
-      } catch (error) {
-        console.error('Erro ao buscar interações:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
+ useEffect(() => {
+  const fetchInteractions = async () => {
+    try {
+      const token = localStorage.getItem('supabase_token');
 
-    fetchInteractions();
-  }, []);
+      const res = await axios.get('/api/interactions', {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      setInteractions(res.data);
+    } catch (error) {
+      console.error('Erro ao buscar interações:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  fetchInteractions();
+}, []);
+
 
   if (loading) return <div className="text-center p-4">Carregando interações...</div>;
 

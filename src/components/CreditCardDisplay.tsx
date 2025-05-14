@@ -28,7 +28,7 @@ const CreditCardDisplay = () => {
       <div className="flex flex-col justify-between h-full">
         <div>
           <div className="flex justify-between items-start">
-            <div className="text-sm font-medium">Finverse</div>
+            <div className="text-sm font-medium">AIBANK</div>
             <div className="flex space-x-2 items-center">
               <div className="font-bold uppercase">Black</div>
               <div className="flex flex-col items-center">

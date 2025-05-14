@@ -10,10 +10,13 @@ const Home = () => {
       <header className="bg-white fixed top-0 left-0 right-0 z-50 shadow-sm">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <div className="flex items-center">
-            <div className="w-10 h-10 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden border-2 border-gray-300">
               <img src="/lovable-uploads/7a1d6d34-d74c-48e2-b662-b22ecf0a5a3d.png" alt="AIBANK Logo" className="w-8 h-8" />
             </div>
-            <img src="/lovable-uploads/d58f8732-ea34-4ec9-8518-69b5ab8969ec.png" alt="AIBANK" className="ml-3 h-6" />
+            
+              <h1 className="ml-3 text-xl font-bold">AIBANK</h1>
+            
+           
           </div>
           <div className="hidden md:flex items-center space-x-8">
             <a href="#features" className="text-gray-600 hover:text-bank-teal transition-colors">
@@ -67,9 +70,9 @@ const Home = () => {
                         <p className="text-sm opacity-70">Saldo disponível</p>
                         <h3 className="text-xl font-bold">R$ 10.000,00</h3>
                       </div>
-                      <div className="w-8 h-8 rounded-full flex items-center justify-center">
-                        <img src="/lovable-uploads/7a1d6d34-d74c-48e2-b662-b22ecf0a5a3d.png" alt="AIBANK Logo" className="w-6 h-6" />
-                      </div>
+                      <div className="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden border-2 border-gray-300">
+                          <img src="/lovable-uploads/7a1d6d34-d74c-48e2-b662-b22ecf0a5a3d.png" alt="AIBANK Logo" className="w-8 h-8" />
+                        </div>
                     </div>
                   </div>
                   <div className="p-5">
@@ -230,13 +233,13 @@ const Home = () => {
             <div className="w-10 h-10 flex items-center justify-center">
               <img src="/lovable-uploads/7a1d6d34-d74c-48e2-b662-b22ecf0a5a3d.png" alt="AIBANK Logo" className="w-8 h-8" />
             </div>
-            <img src="/lovable-uploads/d58f8732-ea34-4ec9-8518-69b5ab8969ec.png" alt="AIBANK" className="ml-3 h-6" />
+           <h1 className="ml-3 text-xl font-bold">AIBANK</h1>
           </div>
           
           <div className="text-center text-gray-400 text-sm">
             <p>© 2023 AIBANK. Todos os direitos reservados.</p>
             <p className="mt-2">
-              Este é um projeto demonstrativo. Não é um banco real.
+              Este é um projeto incubado pela UFG com apoio do CEI UFG, HUB Goiás, SEBRAE-GO. proboro.
             </p>
           </div>
         </div>

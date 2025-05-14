@@ -69,7 +69,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         
         toast({
           title: "Login realizado com sucesso!",
-          description: "Bem-vindo de volta ao Finverse.",
+          description: "Bem-vindo de volta ao AIBANK.",
         });
         
         // Redirect based on OpenFinance completion
