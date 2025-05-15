@@ -36,7 +36,7 @@ export default function DashboardAgenteAgnus() {
   const handleExecuteAgent = async () => {
     setExecuting(true);
     try {
-      const response = await axios.post('/api/agnus/execute-agent');
+      const response = await axios.post('api/execute-agent');
       console.log('Agente executado com sucesso:', response.data);
      
       await fetchLeads();
@@ -50,7 +50,7 @@ export default function DashboardAgenteAgnus() {
   const fetchLeads = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:8080/api/agnus/interactions', {
+      const response = await axios.get('http://localhost:3001/api/interactions', {
 
         headers: { Authorization: `Bearer ${token}` },
       });
