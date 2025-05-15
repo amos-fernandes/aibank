@@ -17,12 +17,21 @@ import { format } from 'date-fns';
 //   localStorage.setItem('agnus-tab', tab);
 // }, [tab]);
 
+type LeadType = {
+  company: string;
+  contact: string;
+  email: string;
+  whatsapp: string;
+  industry: string;
+  date: string; // ou Date se já vier convertido
+};
 
 
 export default function DashboardAgenteAgnus() {
   const [executing, setExecuting] = useState(false);
   const [tab, setTab] = useState('leads');
-  const [leads, setLeads] = useState([]);
+  const [leads, setLeads] = useState<LeadType[]>([]);
+
 
   const handleExecuteAgent = async () => {
     setExecuting(true);
@@ -41,7 +50,8 @@ export default function DashboardAgenteAgnus() {
   const fetchLeads = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('/api/agnus/interactions', {
+      const response = await axios.get('http://localhost:8080/api/agnus/interactions', {
+
         headers: { Authorization: `Bearer ${token}` },
       });
       setLeads(response.data);
@@ -141,7 +151,7 @@ export default function DashboardAgenteAgnus() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {leads.map((lead, i) => (
+                {Array.isArray(leads) && leads.map((lead, i) => (
                   <TableRow key={i}>
                     <TableCell>{lead.company}</TableCell>
                     <TableCell>{lead.contact}</TableCell>
