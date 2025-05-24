@@ -13,6 +13,7 @@ export default defineConfig(({ mode }) => ({
     sourcemap: true,
     build: {
     outDir: 'dist'
+    }
   },
   plugins: [
     react(),
