@@ -30,4 +30,4 @@ COPY --from=builder /app/frontend/dist ./dist
 EXPOSE 3000
 
 # Rodar servidor
-CMD ["serve", "-s", "dist", "-l", "3000"]
+CMD ["serve", "-s", "dist", "-l", "8080"]
