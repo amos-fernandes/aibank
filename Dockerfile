@@ -24,7 +24,7 @@ WORKDIR /app
 RUN npm install -g serve
 
 # Copiar arquivos do build
-COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/frontend/dist ./dist
 
 # Expor porta padrão
 EXPOSE 3000
