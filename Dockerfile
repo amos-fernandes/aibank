@@ -1,39 +1,33 @@
 # Etapa 1 – Build da aplicação
 FROM node:18-alpine AS builder
-
-# Criar diretório de trabalho
 WORKDIR /app
 
-# Copiar arquivos de dependência
+# Copiar dependências e config
 COPY ./frontend/package.json ./frontend/package-lock.json ./
+COPY ./frontend/tsconfig.json ./frontend/tsconfig.app.json ./
+COPY ./frontend/vite.config.ts ./
 
 # Instalar dependências
 RUN npm ci
 
-# Copiar todos os arquivos da aplicação
+# Copiar o restante
 COPY ./frontend .
 
-# Gerar build
+# Build da aplicação
 RUN npm run build
 
-# Etapa 2 – Imagem final otimizada
+# Etapa 2 – Imagem final com servidor estático
 FROM node:18-alpine
-
-# Definir diretório de trabalho
 WORKDIR /app
 
-# Copiar apenas o necessário do build
-COPY --from=builder /app/package.json ./
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/dist ./dist  # Ou .next se for Next.js
-COPY --from=builder /app/public ./public
+# Instalar servidor estático (serve)
+RUN npm install -g serve
 
-# Expor porta padrão do Vite ou Next.js
+# Copiar arquivos do build
+COPY --from=builder /app/dist ./dist
+
+# Expor porta padrão
 EXPOSE 3000
 
-# Variáveis de ambiente
-ENV PORT=3000
-ENV NODE_ENV=production
-
-# Comando para iniciar o servidor
-CMD ["npm", "start"]
+# Rodar servidor
+CMD ["serve", "-s", "dist", "-l", "3000"]
