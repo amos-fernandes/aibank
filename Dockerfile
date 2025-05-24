@@ -5,7 +5,7 @@ WORKDIR /app
 # Copiar dependências e config
 COPY frontend/src/package.json frontend/src/package-lock.json ./
 COPY frontend/src/tsconfig.json frontend/src/tsconfig.app.json ./
-COPY frontend/src/vite.config.ts ./
+COPY frontend/vite.config.ts ./
 
 # Instalar dependências
 RUN npm ci
