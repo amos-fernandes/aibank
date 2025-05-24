@@ -3,9 +3,9 @@ FROM node:18-alpine AS builder
 WORKDIR /app
 
 # Copiar dependências e config
-COPY .frontend/src/package.json .frontend/src/package-lock.json ./
-COPY .frontend/src/tsconfig.json .frontend/src/tsconfig.app.json ./
-COPY .frontend/src/vite.config.ts ./
+COPY frontend/src/package.json frontend/src/package-lock.json ./
+COPY frontend/src/tsconfig.json frontend/src/tsconfig.app.json ./
+COPY frontend/src/vite.config.ts ./
 
 # Instalar dependências
 RUN npm ci
