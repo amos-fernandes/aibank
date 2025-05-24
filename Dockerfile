@@ -5,13 +5,13 @@ FROM node:18-alpine AS builder
 WORKDIR /app
 
 # Copiar arquivos de dependência
-COPY package.json package-lock.json ./
+COPY ./frontend/package.json ./frontend/package-lock.json ./
 
 # Instalar dependências
 RUN npm ci
 
 # Copiar todos os arquivos da aplicação
-COPY . .
+COPY ./frontend .
 
 # Gerar build
 RUN npm run build
@@ -25,13 +25,13 @@ WORKDIR /app
 # Copiar apenas o necessário do build
 COPY --from=builder /app/package.json ./
 COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/dist ./dist  # Ou .next se for Next.js
 COPY --from=builder /app/public ./public
 
-# Expor porta padrão do Next.js
+# Expor porta padrão do Vite ou Next.js
 EXPOSE 3000
 
-# Definir variável de ambiente obrigatória no Cloud Run
+# Variáveis de ambiente
 ENV PORT=3000
 ENV NODE_ENV=production
 
